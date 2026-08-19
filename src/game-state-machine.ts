@@ -1,5 +1,5 @@
-import { StateMachine } from './core/state-machine';
-import { State } from './core/state';
+import { StateMachine } from './core/state-machine.js';
+import { State } from './core/state.js';
 
 export let gameStateMachine: StateMachine;
 

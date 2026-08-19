@@ -1,8 +1,8 @@
-import { State } from '@/core/state';
-import { drawEngine } from '@/core/draw-engine';
-import { controls } from '@/core/controls';
-import { gameStateMachine } from '@/game-state-machine';
-import { menuState } from '@/game-states/menu.state';
+import { State } from '@/core/state.js';
+import { drawEngine } from '@/core/draw-engine.js';
+import { controls } from '@/core/controls.js';
+import { gameStateMachine } from '@/game-state-machine.js';
+import { menuState } from '@/game-states/menu.state.js';
 
 class GameState implements State {
   ballImage = new Image();

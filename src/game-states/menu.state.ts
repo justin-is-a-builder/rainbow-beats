@@ -1,8 +1,8 @@
-import { State } from '@/core/state';
-import { drawEngine } from '@/core/draw-engine';
-import { controls } from '@/core/controls';
-import { gameStateMachine } from '@/game-state-machine';
-import { gameState } from './game.state';
+import { State } from '@/core/state.js';
+import { drawEngine } from '@/core/draw-engine.js';
+import { controls } from '@/core/controls.js';
+import { gameStateMachine } from '@/game-state-machine.js';
+import { gameState } from './game.state.js';
 
 class MenuState implements State {
   private isStartSelected = true;

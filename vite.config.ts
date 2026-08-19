@@ -7,7 +7,7 @@ import { Input, InputAction, InputType, Packer } from 'roadroller';
 import CleanCSS from 'clean-css';
 import { statSync } from 'fs';
 import ect from 'ect-bin';
-import {defaultTerserOptions} from "./terser.config";
+import {defaultTerserOptions} from "./terser.config.ts";
 import {execFileSync} from "child_process";
 import htmlMinify from "html-minifier";
 
@@ -18,7 +18,7 @@ export default defineConfig(({ command, mode }) => {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        '@': path.resolve(import.meta.dirname, './src'),
       }
     },
     plugins: [typescriptPlugin()]
@@ -117,7 +117,7 @@ async function embedJs(html: string, chunk: OutputChunk): Promise<string> {
   let options;
   if (process.env.USE_RR_CONFIG) {
     try {
-      options = JSON.parse(await fs.readFile(`${__dirname}/roadroller-config.json`, 'utf-8'));
+      options = JSON.parse(await fs.readFile(`${import.meta.dirname}/roadroller-config.json`, 'utf-8'));
     } catch(error) {
       throw new Error('Roadroller config not found. Generate one or use the regular build option');
     }
@@ -127,7 +127,7 @@ async function embedJs(html: string, chunk: OutputChunk): Promise<string> {
 
   const packer = new Packer(inputs, options);
   await Promise.all([
-    fs.writeFile(`${path.join(__dirname, 'dist')}/output.js`, htmlInJs),
+    fs.writeFile(`${path.join(import.meta.dirname, 'dist')}/output.js`, htmlInJs),
     packer.optimize(process.env.LEVEL_2_BUILD ? 2 : 0) // Regular builds use level 2, but rr config builds use the supplied params
   ]);
   const { firstLine, secondLine } = packer.makeDecoder();
