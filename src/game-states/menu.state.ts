@@ -1,4 +1,5 @@
 import { State } from '@/core/state.js';
+import { audioEngine } from '@/core/audio-engine.js';
 import { drawEngine } from '@/core/draw-engine.js';
 import { controls } from '@/core/controls.js';
 import { gameStateMachine } from '@/game-state-machine.js';
@@ -24,6 +25,8 @@ class MenuState implements State {
     if (controls.isConfirm && !controls.previousState.isConfirm) {
       if (this.isStartSelected) {
         gameStateMachine.setState(gameState);
+        audioEngine.unlock();
+        audioEngine.play([]);
       } else {
         this.toggleFullscreen();
       }

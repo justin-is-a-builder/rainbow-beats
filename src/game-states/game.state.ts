@@ -3,6 +3,7 @@ import { drawEngine } from '@/core/draw-engine.js';
 import { controls } from '@/core/controls.js';
 import { gameStateMachine } from '@/game-state-machine.js';
 import { menuState } from '@/game-states/menu.state.js';
+import { audioEngine } from '@/core/audio-engine.js';
 
 class GameState implements State {
   ballImage = new Image();
@@ -47,6 +48,7 @@ class GameState implements State {
 
     if (controls.isEscape) {
       gameStateMachine.setState(menuState);
+      audioEngine.stop();
     }
   }
 }
